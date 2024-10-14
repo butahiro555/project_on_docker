@@ -8,7 +8,7 @@ services:
       - "80:80"  # ホストとコンテナのポートマッピング
     volumes:
       - ./docker/nginx/logs:/var/log/nginx  # logsフォルダに、コンテナ内のアクセスログと、エラーログをマウント
-      - ./laravel:/var/www/html # 作業ディレクトリ直下のボリュームをlaravelフォルダにマウント
+      - ./:/var/www/html # 作業ディレクトリ直下のボリュームをlaravelフォルダにマウント
     depends_on:
       - app  # このサービスが依存するサービス
 
@@ -20,7 +20,7 @@ services:
     depends_on:
       - db  # このサービスが依存するサービス
     volumes:
-      - ./laravel:/var/www/html  # ソースコードのマウント
+      - ./:/var/www/html  # ソースコードのマウント
       - ./docker/php/php.ini:/usr/local/etc/php/php.ini  # PHP設定ファイルのマウント
       
   db:
